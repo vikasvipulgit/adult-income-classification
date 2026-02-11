@@ -31,7 +31,7 @@ st.title("Adult Income Classification Models")
 # ----------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("adult.csv")
+    df = pd.read_csv("data/adult.csv")
     df.replace(" ?", np.nan, inplace=True)
     df.dropna(inplace=True)
     return df
