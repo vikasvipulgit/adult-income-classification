@@ -52,6 +52,29 @@ st.title("Adult Income Classification Models")
 # ----------------------------
 df = load_data("data/adult.csv")
 
+st.markdown("## 📂 Dataset Overview")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("**Shape of Dataset:**")
+    st.write(df.shape)
+
+with col2:
+    st.markdown("**Number of Features:**")
+    st.write(df.shape[1])
+
+st.markdown("### 🔎 First 5 Rows of Dataset")
+
+styled_df = df.head().style.set_properties(**{
+    "background-color": "#f8f9fa",
+    "color": "#000000",
+    "border-color": "#dee2e6"
+})
+
+st.dataframe(styled_df)
+
+
 X, y = preprocess_data(df)
 X_train, X_test, y_train, y_test = split_data(X, y)
 
@@ -100,13 +123,12 @@ if st.button("Train and Evaluate"):
 
     st.dataframe(styled_df)
 
-
     # ----------------------------
     # ROC Curve
     # ----------------------------
     st.subheader("ROC Curve")
 
-    fig1, ax1 = plt.subplots(figsize=(6, 5))
+    fig1, ax1 = plt.subplots(figsize=(4.5, 3.5))
 
     for name, model in trained_models.items():
         y_prob = model.predict_proba(X_test)[:, 1]
@@ -118,7 +140,36 @@ if st.button("Train and Evaluate"):
     ax1.set_ylabel("True Positive Rate")
     ax1.legend()
 
-    st.pyplot(fig1)
+    st.pyplot(fig1, use_container_width=False)
+
+    # Show Accuracy Comparison ONLY if All Models selected
+    if selected_model == "All Models":
+
+        st.subheader("📊 Accuracy Comparison")
+
+        fig_bar, ax_bar = plt.subplots(figsize=(4, 3))
+
+        # Highlight best model
+        max_acc = results_df["Accuracy"].max()
+        colors = [
+            "#00c853" if acc == max_acc else "#90caf9"
+            for acc in results_df["Accuracy"]
+        ]
+
+        results_df["Accuracy"].plot(
+            kind="bar",
+            ax=ax_bar,
+            color=colors
+        )
+
+        ax_bar.set_ylabel("Accuracy")
+        ax_bar.set_ylim(0, 1)
+        ax_bar.set_title("Model Accuracy Comparison")
+
+        plt.xticks(rotation=45)
+
+        st.pyplot(fig_bar, use_container_width=False)
+
 
     # ----------------------------
     # Confusion Matrix
@@ -132,7 +183,7 @@ if st.button("Train and Evaluate"):
 
         st.markdown(f"### {name}")
 
-        fig2, ax2 = plt.subplots(figsize=(5, 4))
+        fig2, ax2 = plt.subplots(figsize=(3.5, 3))
         im = ax2.imshow(cm, cmap="Blues")
 
         plt.colorbar(im)
@@ -152,4 +203,4 @@ if st.button("Train and Evaluate"):
                          ha="center", va="center",
                          color=color)
 
-        st.pyplot(fig2)
+        st.pyplot(fig2, use_container_width=False)
