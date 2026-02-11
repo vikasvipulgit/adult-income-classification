@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 
-def load_data(filepath="adult.csv"):
+def load_data(filepath="data/adult.csv"):
     df = pd.read_csv(filepath)
     df.replace(" ?", np.nan, inplace=True)
     df.dropna(inplace=True)

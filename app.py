@@ -11,7 +11,7 @@ st.title("Adult Income Classification Models")
 # ----------------------------
 # Load & Preprocess
 # ----------------------------
-df = load_data("adult.csv")
+df = load_data("data/adult.csv")
 
 st.subheader("Dataset Shape")
 st.write(df.shape)
