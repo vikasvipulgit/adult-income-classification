@@ -149,9 +149,29 @@ streamlit run app.py
 
 ## 🏆 Results Summary
 
-Among the implemented models, ensemble models such as Random Forest and XGBoost generally achieved higher performance compared to individual classifiers.
+## Model Performance Observations
 
-Model comparison was done based on Accuracy, AUC, and MCC scores.
+## Model Evaluation Results
+
+| ML Model Name        | Accuracy | AUC     | Precision | Recall  | F1 Score | MCC     |
+|----------------------|----------|---------|-----------|---------|----------|---------|
+| Logistic Regression  | 0.8549   | 0.9031  | 0.7405    | 0.6116  | 0.6699   | 0.5824  |
+| Decision Tree        | 0.8128   | 0.7472  | 0.6093    | 0.6205  | 0.6148   | 0.4913  |
+| KNN                  | 0.8213   | 0.8349  | 0.6477    | 0.5651  | 0.6035   | 0.4908  |
+| Naive Bayes          | 0.4543   | 0.6827  | 0.3014    | 0.9611  | 0.4589   | 0.2579  |
+| Random Forest        | 0.8524   | 0.9005  | 0.7277    | 0.6186  | 0.6687   | 0.5778  |
+| XGBoost              | 0.8683   | 0.9216  | 0.7706    | 0.6448  | 0.7021   | 0.6224  |
+
+
+
+| ML Model Name | Observation about Model Performance |
+|---------------|--------------------------------------|
+| Logistic Regression | Achieved strong performance with **85.49% accuracy** and **0.903 AUC**, indicating good class separability. Precision (0.74) and recall (0.61) are reasonably balanced, resulting in an F1-score of 0.67 and MCC of 0.58. It performs well as a robust baseline linear model. |
+| Decision Tree | Achieved **81.28% accuracy** and lower AUC (0.747). Although recall (0.62) is comparable to Logistic Regression, lower precision (0.61) and MCC (0.49) suggest weaker generalization and possible overfitting compared to ensemble methods. |
+| KNN | Produced **82.13% accuracy** and AUC of 0.835. Performance is moderate with slightly lower recall (0.56). MCC (0.49) indicates reasonable predictive ability but inferior to Logistic Regression and ensemble models. |
+| Naive Bayes | Showed poor overall performance with **45.43% accuracy** and very low MCC (0.26). Although recall is extremely high (0.96), very low precision (0.30) indicates bias toward predicting the positive class, reducing reliability. |
+| Random Forest (Ensemble) | Achieved strong results with **85.24% accuracy** and **0.900 AUC**. Balanced precision (0.73) and recall (0.62) produce solid F1-score (0.67) and MCC (0.58). Performs more robustly than single Decision Tree due to ensemble learning. |
+| XGBoost (Ensemble) | Delivered the best performance with highest **86.83% accuracy**, highest **0.922 AUC**, highest F1-score (0.70), and highest MCC (0.62). Demonstrates superior generalization and best overall predictive capability on this dataset. |
 
 ---
 
