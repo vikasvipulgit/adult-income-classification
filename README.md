@@ -104,7 +104,7 @@ The project includes an interactive Streamlit application that allows:
 The application is deployed using Streamlit Community Cloud.
 
 🔗 Live Application Link:
-(Insert your Streamlit deployment link here)
+https://adult-income-classification-axfgrnhecc9ur6aj4cheix.streamlit.app
 
 ---
 
